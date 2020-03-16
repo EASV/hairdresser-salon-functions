@@ -10,4 +10,5 @@ export class DependencyFactory {
     const service: ProductService = new ProductService(repo);
     return new ProductControllerFirebase(service)
   }
+
 }

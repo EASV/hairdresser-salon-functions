@@ -1,7 +1,8 @@
 import {Product} from '../models/product';
 import * as admin from 'firebase-admin';
+import {ProductRepository} from './product.repository';
 
-export class ProductRepositoryFirebase {
+export class ProductRepositoryFirebase implements ProductRepository {
   topProductsPath = 'top-products';
   set(product: Product): Promise<any> {
     return this.db().doc(`${this.topProductsPath}/${product.uId}`).set(
