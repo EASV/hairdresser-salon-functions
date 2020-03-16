@@ -1,0 +1,47 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "build-watch": "tsc -w",
+    "serve": "npm run build-watch || firebase emulators:start --only functions",
+    "shell": "npm run build-watch && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watchAll",
+    "prettier": "prettier --check \"**/*.ts\""
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0",
+    "jest-createspyobj": "^1.2.2",
+    "jest-mock-extended": "^1.0.8",
+    "moq.ts": "^5.0.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.0",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.8.3"
+  },
+  "private": true,
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hairdresser-salon-1d12f",
+  "private_key_id": "9f7b7e09797f2ec39af46f9373a364433851d003",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCoiuTsAcPmtQLM\n9hjaYdCwyoU+87jADLzH1WHoBqMqJpK0x5nCxq2CrDbR1XNUGdMOFeS5LYm27NAY\nttQlWJK2R0gpsY/3F58/8JHtfBEGORozbB0Qx5uwv9qZA5PxFuqvoeuiYOnukw0K\nBWMSxnSKJxhHojtMVIbjgYvcq4C7rZBX6K74SduHpr8l1zA3WWfavcUuraJFzbXS\ngMvehOemgHlbH1fvJRZHKNtn++Dq0u7Pb6M5am90F6obUCCDXhSoW/Q0/LdAeSrK\n5PYyFNNnvPecUM1BY5EkloyJI83YRU9ExzR5K59Df5879WyccOPvDVo78c8UqBHP\naXcN1JOnAgMBAAECggEACOJNX81WBK6s553fQH+gbvk13dQd/G2Pc98hCohzCFFB\nMWtGBRjQ447tUtE0A45a7CamSEaIuE4yR+M3OoK5NQd728rCwm0J1WZ6YrDD+vZ+\nlZBQ1eYXpFDwllk0bqRdGYXo9EW0fwFcUhdnmgFA+llGM9xu0L6x34MgGrEll37g\nL4C3QdPtvXn6hC3eMVbSgymXJDG89cPctaeyKSj+ZhlHGQAxtabU2TnoouQ5Yj2l\noGP6/F6t2MZj5e7f4f8pX4QV78ckah1JorZCSQDdzpcBcOTmWWKmz5ZbYw+XyAlt\nkrRLUP3PK3yhMTjCsk6l+WZ6wd/mwsveTu76C265jQKBgQDXqkvlVu2o4+e/GqAi\nodYXRdVfky5YxFKb0ZPmmBLpNBMHGAYNJJ3rj3SyLTlauczuX2MldYUYFRiyCIbj\n4G5djCWyCMS6e4Ic7FWBZAu5juNGOazUSWTEqrutkwR9Juoe8WHwhwnd2YzAjM45\nnB1mqnhqU/TZvgZvD7yxFXWynQKBgQDIEHC/ztj82HTbf2wV59gHehxcI0TOTc4Q\nvTMDhWyUbmAqsR/7sbMJqXTPdvHIl+Fwqzb2m0X/MCStIMWeilRvb7IX8TlrDrkL\nuGdKeIF2qxqImOXot+Sy5EJTPXz1yrjZ1X+4RX34AhqKXMAfnhKgIZto5TwDQXbn\n3hMKouf6EwKBgHu/jt8g2ywO4fppJ7vXiwY9nurBhFWRCSm5vxkQ58ECjWyDn21J\nNohk/3wBsSha9rlM6JIk9eLUsB/v/p6hOBLbiQG4QFIU7pr0DTg6lPO7hrPUAlSp\nbHXg1eIKOwgpHSv2K9GdWs7+tuIBqY+rAb/YT1ILrLKIdB6kNAyUmL2NAoGAdrzL\nLgul3Ora8CsAC0A+hrGCg2yrOYYT9vtTe5OEjdO0X6IgSVF94Q4htb/yYAtEUYpM\nZLBjKsF4AwigQSf4VOsF2A/i9BcY3Evlgd1jePq0FL4qNaRup32xn5WuxHI8o4yC\n8OrNiJQ3DEdf/2PhyggoJGlo5MXFvHeg9X8aDuECgYB3cB9x2QJSlfMjdivEdzbA\nBBKY0LYrvzV4Gy9niygqiRfGKeVKEezE8DVBl4MH9/QI49soETZCur/2+4XcXD9L\nN37BLu82CCxDWZIgGPdZAhWwpIZyWMcXVHeUf//5UD+fsXq9YarGwkOgW8sUBRZp\n2ojZTb6Z0Z8/9vN4B1gKUQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fzyse@hairdresser-salon-1d12f.iam.gserviceaccount.com",
+  "client_id": "112497637590394769784",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fzyse%40hairdresser-salon-1d12f.iam.gserviceaccount.com"
+}
