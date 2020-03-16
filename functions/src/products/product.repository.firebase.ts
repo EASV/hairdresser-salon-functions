@@ -4,13 +4,13 @@ import {ProductRepository} from './product.repository';
 
 export class ProductRepositoryFirebase implements ProductRepository {
   topProductsPath = 'top-products';
-  set(product: Product): Promise<any> {
+  setTopProducts(product: Product): Promise<any> {
     return this.db().doc(`${this.topProductsPath}/${product.uId}`).set(
       product
     );
   };
 
-  delete(uId: string): Promise<any> {
+  deleteTopProducts(uId: string): Promise<any> {
     return this.db().doc(`${this.topProductsPath}/${uId}`).delete();
   };
 

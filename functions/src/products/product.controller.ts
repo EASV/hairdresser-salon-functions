@@ -3,5 +3,7 @@ import {DocumentSnapshot} from 'firebase-functions/lib/providers/firestore';
 import {EventContext} from 'firebase-functions';
 
 export interface ProductController {
-  written(snap: Change<DocumentSnapshot>, context: EventContext): Promise<void>;
+  writtenProducts(snap: Change<DocumentSnapshot>, context: EventContext): Promise<void>;
+
+  updatedTopProduct(snap: Change<DocumentSnapshot>, context: EventContext): Promise<void>;
 }

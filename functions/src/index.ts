@@ -8,12 +8,18 @@ const difa = new DependencyFactory()
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://hairdresser-salon-1d12f.firebaseio.com"
-})
+});
 
 exports.productWritten = functions.firestore
   .document('products/{prodId}')
   .onWrite((snap, context) => {
-    return difa.getProductController().written(snap, context);
+    return difa.getProductController().writtenProducts(snap, context);
+  });
+
+exports.topProductUpdated = functions.firestore
+  .document('top-products/{prodId}')
+  .onUpdate((snap, context) => {
+    return difa.getProductController().updatedTopProduct(snap, context)
   });
 
 // // Start writing Firebase Functions

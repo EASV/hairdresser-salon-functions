@@ -1,6 +1,6 @@
 import {Product} from '../models/product';
 
 export interface ProductRepository {
-  set(product: Product): Promise<any>;
-  delete(uid: string): Promise<any>;
+  setTopProducts(product: Product): Promise<any>;
+  deleteTopProducts(uid: string): Promise<any>;
 }

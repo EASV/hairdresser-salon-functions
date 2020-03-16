@@ -9,19 +9,19 @@ describe('ProductController', () => {
   let product: Product = {url: 'a', timesPurchased: 0, name: 'b', price: 22, uId:'ab'}
   beforeEach(() => {
     productRepository = new Mock<ProductRepository>()
-      .setup(pr => pr.set(product))
+      .setup(pr => pr.setTopProducts(product))
       .returns(new Promise((resolve, reject) => {resolve()}));
     productService = new ProductService(productRepository.object());
   });
 
   it('Init Test', async () => {
-    // productRepository.set.mockResolvedValue(null);
-    // productRepository.set.mockRejectedValue(null);
-    await productService.write(
+    // productRepository.setTopProducts.mockResolvedValue(null);
+    // productRepository.setTopProducts.mockRejectedValue(null);
+    await productService.writeProducts(
       'abc',
       {uId: 'abc', price: 22, name: 'haircut', timesPurchased: 0, url: 'google.com'},
       {uId: 'abc', price: 22, name: 'haircut2', timesPurchased: 0, url: 'google.com'});
-    productRepository.verify(pr => pr.set, Times.Exactly(1));
+    productRepository.verify(pr => pr.setTopProducts, Times.Exactly(1));
   });
 
 });

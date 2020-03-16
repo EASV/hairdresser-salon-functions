@@ -9,9 +9,15 @@ export class ProductControllerFirebase implements ProductController {
 
   constructor(private productService: ProductService) {}
 
-  written(snap: Change<DocumentSnapshot>, context: EventContext): Promise<void> {
+  writtenProducts(snap: Change<DocumentSnapshot>, context: EventContext): Promise<void> {
     const productBefore = snap.before.data() as Product;
     const productAfter = snap.after.data() as Product;
-    return this.productService.write(context.params.prodId, productBefore, productAfter)
+    return this.productService.writeProducts(context.params.prodId, productBefore, productAfter)
   };
+
+  updatedTopProduct(snap: Change<DocumentSnapshot>, context: EventContext): Promise<void> {
+    const productBefore = snap.before.data() as Product;
+    const productAfter = snap.after.data() as Product;
+    return this.productService.upateTopProduct(context.params.prodId, productBefore, productAfter);
+  }
 }

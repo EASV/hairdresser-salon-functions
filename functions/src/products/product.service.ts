@@ -4,14 +4,14 @@ import { ProductRepository } from './product.repository'
 export class ProductService {
     constructor(private productRepository: ProductRepository) {}
 
-    write(
+    writeProducts(
         prodId: string,
         productBefore: Product,
         productAfter: Product
     ): Promise<void> {
         const times = productBefore.timesPurchased++;
         if (productAfter) {
-            return this.productRepository.set({
+            return this.productRepository.setTopProducts({
                 uId: prodId,
                 name: productAfter.name,
                 price: productAfter.price,
@@ -19,7 +19,21 @@ export class ProductService {
                 timesPurchased: times,
             })
         } else {
-            return this.productRepository.delete(prodId)
+            return this.productRepository.deleteTopProducts(prodId)
         }
+    }
+
+    upateTopProduct(
+      prodId: string,
+      productBefore: Product,
+      productAfter: Product): Promise<void> {
+        const name = productAfter.name.toUpperCase();
+        return this.productRepository.setTopProducts({
+            uId: prodId,
+            name: name,
+            price: productAfter.price,
+            url: productAfter.url,
+            timesPurchased: productAfter.timesPurchased,
+        });
     }
 }

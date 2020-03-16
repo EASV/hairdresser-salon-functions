@@ -10,7 +10,7 @@ describe('ProductController', () => {
   let productAfter: Product = {url: 'a', timesPurchased: 0, name: 'b', price: 22, uId:'ab'}
   beforeEach(() => {
     productServiceMock = new Mock<ProductService>();
-    productServiceMock.setup(ps => ps.write('ab', productBefore, productAfter))
+    productServiceMock.setup(ps => ps.writeProducts('ab', productBefore, productAfter))
       .returns(new Promise((resolve, reject) => {resolve()}));
     productController = new ProductControllerFirebase(productServiceMock.object());
   });
@@ -51,7 +51,7 @@ describe('ProductController', () => {
       .setup(con => con.params)
       .returns(mockedParams);
 
-    await productController.written(mockedChanged.object() as any, mockedContext.object() as any)
+    await productController.writtenProducts(mockedChanged.object() as any, mockedContext.object() as any)
 
   });
 
@@ -69,7 +69,7 @@ describe('ProductController', () => {
     snap.before.data.mockReturnValue({a: 'b', b: 2});
     snap.after.data.mockReturnValue({a: 'b', b: 2});
 
-    await productController.written(snap as any, context as any)
+    await productController.writtenProducts(snap as any, context as any)
 
   });*/
 
