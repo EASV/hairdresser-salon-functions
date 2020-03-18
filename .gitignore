@@ -2,6 +2,7 @@
 **/*.js
 **/*.js.map
 functions/secret.json
+coverage/
 
 # Typescript v1 declaration files
 typings/

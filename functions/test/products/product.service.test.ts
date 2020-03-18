@@ -1,6 +1,6 @@
 import {ProductRepository} from '../../src/products/product.repository';
 import {ProductService} from '../../src/products/product.service';
-import {IMock, Mock, Times} from 'moq.ts';
+import {IMock, Mock} from 'moq.ts';
 import {Product} from '../../src/models/product';
 
 describe('ProductService', () => {
@@ -14,15 +14,17 @@ describe('ProductService', () => {
     productService = new ProductService(productRepository.object());
   });
 
-  it('Init Test', async () => {
-    console.log('snurf2', product);
-    // productRepository.setTopProducts.mockResolvedValue(null);
-    // productRepository.setTopProducts.mockRejectedValue(null);
-    await productService.writeProducts(
-      'abc',
-      {uId: 'abc', price: 22, name: 'haircut', timesPurchased: 0, url: 'google.com'},
-      {uId: 'abc', price: 22, name: 'haircut2', timesPurchased: 0, url: 'google.com'});
-    productRepository.verify(pr => pr.setTopProducts, Times.Exactly(1));
+  it('Buying a product adds one to timesPurchased', async () => {
+    const beforePurchased = product.timesPurchased;
+    expect(beforePurchased).toBe(0);
+    const productAfter: Product = productService.buy(product);
+    const afterPurchased = productAfter.timesPurchased;
+    expect(afterPurchased).toBe(1);
+  });
+
+  it('Buying a product with undefined value should not throw an exception', async () => {
+    const productAfter: Product = productService.buy(undefined as any);
+    expect(productAfter).toBeUndefined();
   });
 
 });

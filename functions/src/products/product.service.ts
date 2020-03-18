@@ -36,4 +36,12 @@ export class ProductService {
             timesPurchased: productAfter.timesPurchased,
         });
     }
+
+    buy(product: Product): Product {
+        if(product) {
+            product.timesPurchased = product.timesPurchased +1;
+            return product;
+        }
+        return undefined as any;
+    }
 }
