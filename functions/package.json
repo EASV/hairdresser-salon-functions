@@ -1,9 +1,9 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "tslint --project tsconfig.json",
-    "build": "tsc",
-    "build-watch": "tsc -w",
+    "lint": "tslint --project tsconfig-build.json",
+    "build": "tsc --project tsconfig-build.json",
+    "build-watch": "tsc -w --project tsconfig-build.json",
     "serve": "npm run build-watch || firebase emulators:start --only functions",
     "shell": "npm run build-watch && firebase functions:shell",
     "start": "npm run shell",

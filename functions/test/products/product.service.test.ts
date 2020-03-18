@@ -3,7 +3,7 @@ import {ProductService} from '../../src/products/product.service';
 import {IMock, Mock, Times} from 'moq.ts';
 import {Product} from '../../src/models/product';
 
-describe('ProductController', () => {
+describe('ProductService', () => {
   let productRepository: IMock<ProductRepository>;
   let productService: ProductService;
   let product: Product = {url: 'a', timesPurchased: 0, name: 'b', price: 22, uId:'ab'}
@@ -15,6 +15,7 @@ describe('ProductController', () => {
   });
 
   it('Init Test', async () => {
+    console.log('snurf2', product);
     // productRepository.setTopProducts.mockResolvedValue(null);
     // productRepository.setTopProducts.mockRejectedValue(null);
     await productService.writeProducts(
