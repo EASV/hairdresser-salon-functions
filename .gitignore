@@ -1,6 +1,7 @@
 ## Compiled JavaScript files
 **/*.js
 **/*.js.map
+!functions/jest.config.js
 functions/secret.json
 coverage/
 
