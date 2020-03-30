@@ -1,10 +1,10 @@
 import { Product } from '../models/product'
-import { ProductRepository } from './product.repository'
+import { ProductRepository } from './product.repository';
+import {StockRepository} from '../stock/stock.repository';
 
 export class ProductService {
-    constructor(private productRepository: ProductRepository) {}
-
-    writeProducts(
+    constructor(private productRepository: ProductRepository, private stockRepository: StockRepository) {}
+    async writeProducts(
         prodId: string,
         productBefore: Product,
         productAfter: Product
@@ -16,14 +16,14 @@ export class ProductService {
                 name: productAfter.name,
                 price: productAfter.price,
                 url: productAfter.url,
-                timesPurchased: times,
+                timesPurchased: times
             })
         } else {
             return this.productRepository.deleteTopProducts(prodId)
         }
     }
 
-    upateTopProduct(
+    updateTopProduct(
       prodId: string,
       productBefore: Product,
       productAfter: Product): Promise<void> {
@@ -37,11 +37,8 @@ export class ProductService {
         });
     }
 
-    buy(product: Product): Product {
-        if(product) {
-            product.timesPurchased = product.timesPurchased +1;
-            return product;
-        }
-        return undefined as any;
+    async create(product: Product): Promise<Product> {
+        await this.stockRepository.create(product, 5);
+        return Promise.resolve(product);
     }
 }

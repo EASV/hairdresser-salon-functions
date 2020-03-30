@@ -46,7 +46,7 @@ describe('ProductController', () => {
     }
     const mockedParams = new Mock<Params>()
       .setup(params => params.prodId)
-      .returns('ab')
+      .returns('ab');
     const mockedContext = new Mock<Context>()
       .setup(con => con.params)
       .returns(mockedParams);

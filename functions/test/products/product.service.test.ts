@@ -1,30 +1,39 @@
 import {ProductRepository} from '../../src/products/product.repository';
 import {ProductService} from '../../src/products/product.service';
-import {IMock, Mock} from 'moq.ts';
+import {IMock, Times} from 'moq.ts';
 import {Product} from '../../src/models/product';
+import {StockRepository} from '../../src/stock/stock.repository';
+import {TestHelper} from '../helpers/helper';
 
 describe('ProductService', () => {
+  let testHelper = new TestHelper();
   let productRepository: IMock<ProductRepository>;
+  let stockRepository: IMock<StockRepository>;
   let productService: ProductService;
-  let product: Product = {url: 'a', timesPurchased: 0, name: 'b', price: 22, uId:'ab'}
   beforeEach(() => {
-    productRepository = new Mock<ProductRepository>()
-      .setup(pr => pr.setTopProducts(product))
-      .returns(new Promise((resolve, reject) => {resolve()}));
-    productService = new ProductService(productRepository.object());
+    productRepository = testHelper.getProductRepositoryMock();
+    stockRepository = testHelper.getStockRepositoryMock();
+    productService = new ProductService(productRepository.object(), stockRepository.object());
   });
 
-  it('Buying a product adds one to timesPurchased', async () => {
-    const beforePurchased = product.timesPurchased;
-    expect(beforePurchased).toBe(0);
-    const productAfter: Product = productService.buy(product);
-    const afterPurchased = productAfter.timesPurchased;
-    expect(afterPurchased).toBe(1);
+  it('Product Service needs a StockRepository and a ProductRepository', () => {
+    const productServiceDefined = new ProductService(productRepository.object(), stockRepository.object());
+    expect(productServiceDefined).toBe(productServiceDefined);
   });
 
-  it('Buying a product with undefined value should not throw an exception', async () => {
-    const productAfter: Product = productService.buy(undefined as any);
-    expect(productAfter).toBeUndefined();
+  it('Product Service has a Create Function that expects a product as param that returns a Promise containing the product', async () => {
+    const productAfter: Product = await productService.create(testHelper.getProduct1());
+    expect(productAfter).toBe(testHelper.getProduct1());
+  });
+
+  it('Product Service should call Create Function on productRepository', async () => {
+    //await productService.create(product);
+    //productRepository.verify(repository => repository.create(product), Times.Exactly(1));
+  });
+
+  it('When Product is created a new stock with count of 5 should be added to the stock collection', async () => {
+    await productService.create(testHelper.getProduct1());
+    stockRepository.verify(stockRepo => stockRepo.create(testHelper.getProduct1(), 5), Times.Exactly(1));
   });
 
 });
