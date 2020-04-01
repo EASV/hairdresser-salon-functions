@@ -8,13 +8,20 @@ export class OrderService {
     console.log(this.stockRepository);
   }
 
-
-  executeOrder(order: Order): Promise<Order> {
+   async executeOrder(order: Order): Promise<Order> {
+    console.log('order', order)
     if(!order.orderLines || order.orderLines.length < 1) {
       throw new TypeError('You need orderlines to execute a order');
     }
-    console.log('order', order);
-    this.stockRepository.lowerStock(order.orderLines[0].product, order.orderLines[0].amount);
+    if(order.orderLines.length === 1) {
+      await this.stockRepository.lowerStock(order.orderLines[0].product, order.orderLines[0].amount);
+    }
+    else {
+      await this.stockRepository.lowerStocks(order.orderLines);
+    }
+    /*order.orderLines.forEach(async (ol) => {
+      await this.stockRepository.lowerStock(ol.product, ol.amount);
+    });*/
     return Promise.resolve(order);
   }
 }

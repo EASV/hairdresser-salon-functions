@@ -13,7 +13,7 @@ admin.initializeApp({
 exports.addOrderRemovesStock = functions.firestore
   .document('orders/{orderId}')
   .onCreate((snap, context) => {
-    return Promise.resolve();
+    return difa.getOrderController().execute(snap, context);
   });
 
 exports.productWritten = functions.firestore

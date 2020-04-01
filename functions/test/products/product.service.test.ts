@@ -3,16 +3,20 @@ import {ProductService} from '../../src/products/product.service';
 import {IMock, Times} from 'moq.ts';
 import {Product} from '../../src/models/product';
 import {StockRepository} from '../../src/stock/stock.repository';
-import {TestHelper} from '../helpers/helper';
+import {RepositoryTestHelper} from '../helpers/repository.test.helper';
+import {DataTestHelper} from '../helpers/data.test.helper';
 
 describe('ProductService', () => {
-  let testHelper = new TestHelper();
+  let dataTestHelper: DataTestHelper;
+  let repoTestHelper: RepositoryTestHelper;
   let productRepository: IMock<ProductRepository>;
   let stockRepository: IMock<StockRepository>;
   let productService: ProductService;
   beforeEach(() => {
-    productRepository = testHelper.getProductRepositoryMock();
-    stockRepository = testHelper.getStockRepositoryMock();
+    dataTestHelper = new DataTestHelper();
+    repoTestHelper = new RepositoryTestHelper(dataTestHelper);
+    productRepository = repoTestHelper.getProductRepositoryMock();
+    stockRepository = repoTestHelper.getStockRepositoryMock();
     productService = new ProductService(productRepository.object(), stockRepository.object());
   });
 
@@ -22,8 +26,8 @@ describe('ProductService', () => {
   });
 
   it('Product Service has a Create Function that expects a product as param that returns a Promise containing the product', async () => {
-    const productAfter: Product = await productService.create(testHelper.getProduct1());
-    expect(productAfter).toBe(testHelper.getProduct1());
+    const productAfter: Product = await productService.create(dataTestHelper.product1);
+    expect(productAfter).toBe(dataTestHelper.product1);
   });
 
   it('Product Service should call Create Function on productRepository', async () => {
@@ -32,8 +36,8 @@ describe('ProductService', () => {
   });
 
   it('When Product is created a new stock with count of 5 should be added to the stock collection', async () => {
-    await productService.create(testHelper.getProduct1());
-    stockRepository.verify(stockRepo => stockRepo.create(testHelper.getProduct1(), 5), Times.Exactly(1));
+    await productService.create(dataTestHelper.product1);
+    stockRepository.verify(stockRepo => stockRepo.create(dataTestHelper.product1, 5), Times.Exactly(1));
   });
 
 });
