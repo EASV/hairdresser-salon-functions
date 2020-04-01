@@ -9,9 +9,10 @@ export class OrderService {
   }
 
    async executeOrder(order: Order): Promise<Order> {
-    console.log('order', order)
     if(!order.orderLines || order.orderLines.length < 1) {
+      console.log('order', order)
       throw new TypeError('You need orderlines to execute a order');
+      return Promise.reject(order);
     }
     if(order.orderLines.length === 1) {
       await this.stockRepository.lowerStock(order.orderLines[0].product, order.orderLines[0].amount);

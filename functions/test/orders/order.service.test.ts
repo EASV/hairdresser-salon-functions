@@ -24,10 +24,13 @@ describe('OrderService', () => {
     expect(orderService).toBeDefined()
   });
 
-  it('When Executing order I need atleast 1 orderline', () => {
-    dataTestHelper.order1.orderLines = [];
-    //expect(() => {orderService.executeOrder(dataTestHelper.order1)}).toThrow(TypeError);
-    //expect(() => {orderService.executeOrder(dataTestHelper.order1)}).toThrow('You need orderlines to execute a order');
+  it('When Executing order I need atleast 1 orderline', async () => {
+    const order = dataTestHelper.order1;
+    order.orderLines = [];
+    await expect(orderService.executeOrder(order)).rejects.toThrow(TypeError);
+    await expect(orderService.executeOrder(order)).rejects.toThrow('You need orderlines to execute a order');
+    //expect(async  () => {orderService.executeOrder(order)}).toThrow(TypeError);
+    //expect(() => {orderService.executeOrder(order)}).toThrow('You need orderlines to execute a order');
   });
 
   it('When I execute a order stockrepo should be called with the correct amount of products bought with a orderline count of 1', async () => {
